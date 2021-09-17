@@ -333,12 +333,12 @@ pub enum Relation {
 #[cfg_attr(not(feature = "unstable-exhaustive-types"), non_exhaustive)]
 pub struct InReplyTo {
     /// The event being replied to.
-    pub event_id: EventId,
+    pub event_id: Box<EventId>,
 }
 
 impl InReplyTo {
     /// Creates a new `InReplyTo` with the given event ID.
-    pub fn new(event_id: EventId) -> Self {
+    pub fn new(event_id: Box<EventId>) -> Self {
         Self { event_id }
     }
 }
@@ -349,7 +349,7 @@ impl InReplyTo {
 #[cfg_attr(not(feature = "unstable-exhaustive-types"), non_exhaustive)]
 pub struct Replacement {
     /// The ID of the event being replacing.
-    pub event_id: EventId,
+    pub event_id: Box<EventId>,
 
     /// New content.
     pub new_content: Box<RoomMessageEventContent>,
@@ -358,7 +358,7 @@ pub struct Replacement {
 #[cfg(feature = "unstable-pre-spec")]
 impl Replacement {
     /// Creates a new `Replacement` with the given event ID and new content.
-    pub fn new(event_id: EventId, new_content: Box<RoomMessageEventContent>) -> Self {
+    pub fn new(event_id: Box<EventId>, new_content: Box<RoomMessageEventContent>) -> Self {
         Self { event_id, new_content }
     }
 }
