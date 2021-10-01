@@ -6,6 +6,7 @@ use std::collections::BTreeMap;
 
 use js_int::UInt;
 use ruma_identifiers::MxcUri;
+use ruma_serde::Base64;
 use serde::{Deserialize, Serialize};
 
 pub mod aliases;
@@ -120,11 +121,12 @@ pub struct EncryptedFile {
     pub key: JsonWebKey,
 
     /// The 128-bit unique counter block used by AES-CTR, encoded as unpadded base64.
-    pub iv: String,
+    pub iv: Base64,
 
     /// A map from an algorithm name to a hash of the ciphertext, encoded as unpadded base64.
+    ///
     /// Clients should support the SHA-256 hash, which uses the key sha256.
-    pub hashes: BTreeMap<String, String>,
+    pub hashes: BTreeMap<String, Base64>,
 
     /// Version of the encrypted attachments protocol. Must be `v2`.
     pub v: String,
@@ -144,11 +146,11 @@ pub struct EncryptedFileInit {
     pub key: JsonWebKey,
 
     /// The 128-bit unique counter block used by AES-CTR, encoded as unpadded base64.
-    pub iv: String,
+    pub iv: Base64,
 
     /// A map from an algorithm name to a hash of the ciphertext, encoded as unpadded base64.
     /// Clients should support the SHA-256 hash, which uses the key sha256.
-    pub hashes: BTreeMap<String, String>,
+    pub hashes: BTreeMap<String, Base64>,
 
     /// Version of the encrypted attachments protocol. Must be `v2`.
     pub v: String,
@@ -178,7 +180,7 @@ pub struct JsonWebKey {
     pub alg: String,
 
     /// The key, encoded as url-safe unpadded base64.
-    pub k: String,
+    pub k: Base64,
 
     /// Extractable. Must be `true`. This is a
     /// [W3C extension](https://w3c.github.io/webcrypto/#iana-section-jwk).
@@ -202,7 +204,7 @@ pub struct JsonWebKeyInit {
     pub alg: String,
 
     /// The key, encoded as url-safe unpadded base64.
-    pub k: String,
+    pub k: Base64,
 
     /// Extractable. Must be `true`. This is a
     /// [W3C extension](https://w3c.github.io/webcrypto/#iana-section-jwk).

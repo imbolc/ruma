@@ -117,7 +117,7 @@ pub struct SasV1Content {
     /// The hash (encoded as unpadded base64) of the concatenation of the
     /// device's ephemeral public key (encoded as unpadded base64) and the
     /// canonical JSON representation of the *m.key.verification.start* message.
-    pub commitment: String,
+    pub commitment: Base64,
 }
 
 /// Mandatory initial set of fields for creating an accept `SasV1Content`.
@@ -145,7 +145,7 @@ pub struct SasV1ContentInit {
     /// The hash (encoded as unpadded base64) of the concatenation of the
     /// device's ephemeral public key (encoded as unpadded base64) and the
     /// canonical JSON representation of the *m.key.verification.start* message.
-    pub commitment: String,
+    pub commitment: Base64,
 }
 
 impl From<SasV1ContentInit> for SasV1Content {

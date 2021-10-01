@@ -60,12 +60,12 @@ pub struct PublicKey {
     pub key_validity_url: Option<String>,
 
     /// A Base64-encoded Ed25519 key with which the token must be signed.
-    pub public_key: String,
+    pub public_key: Base64,
 }
 
 impl PublicKey {
     /// Creates a new `PublicKey` with the given base64-encoded ed25519 key.
-    pub fn new(public_key: String) -> Self {
+    pub fn new(public_key: Base64) -> Self {
         Self { key_validity_url: None, public_key }
     }
 }

@@ -113,16 +113,15 @@ pub struct _CustomContent {
 #[serde(rename = "m.reciprocate.v1", tag = "method")]
 pub struct ReciprocateV1Content {
     /// The shared secret from the QR code, encoded using unpadded base64.
-    pub secret: String,
+    pub secret: Base64,
 }
 
 #[cfg(feature = "unstable-pre-spec")]
 impl ReciprocateV1Content {
     /// Create a new `ReciprocateV1Content` with the given shared secret.
     ///
-    /// The shared secret needs to come from the scanned QR code, encoded using
-    /// unpadded base64.
-    pub fn new(secret: String) -> Self {
+    /// The shared secret needs to come from the scanned QR code, encoded using unpadded base64.
+    pub fn new(secret: Base64) -> Self {
         Self { secret }
     }
 }
